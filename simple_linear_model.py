@@ -19,7 +19,7 @@ noise = np.random.uniform(-5, 5, (observations, 1))
 targets = 3*xs + 5*zs + 7 + noise
 
 # Plot training data
-def plot_training_data():
+def plot_training_data(targets):
     targets = targets.reshape(observations,)
     fig = plt.figure()
     ax = fig.add_subplot(111, projection = '3d')
