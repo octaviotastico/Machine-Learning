@@ -1,12 +1,5 @@
-import matplotlib.pyplot as plt
-import numpy as np
-import pandas as pd
-import seaborn as sns
 import tensorflow as tf
 import tensorflow_datasets as tfds
-from sklearn.cluster import KMeans
-from mpl_toolkits.mplot3d import Axes3D
-sns.set()
 
 # Data
 mnist, info = tfds.load('mnist', with_info=True, as_supervised=True)
@@ -34,20 +27,30 @@ test = test.batch(size_test)
 validation_input, validation_target = next(iter(validation))
 
 # Model
-input_size = 784
 output_size = 10
 hidden_layers_size = 50
 
 model = tf.keras.Sequential([
-  tf.keras.layers.Flatten(input_shape=(28,28,1)),
+  tf.keras.layers.Flatten(input_shape=(28,28,1)), # input_size = 28*28*1 = 784
   tf.keras.layers.Dense(hidden_layers_size, activation='relu'),
   tf.keras.layers.Dense(hidden_layers_size, activation='relu'),
   tf.keras.layers.Dense(hidden_layers_size, activation='relu'),
   tf.keras.layers.Dense(output_size, activation='softmax')
 ])
 
-model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
+model.compile(
+  optimizer='adam',
+  loss='sparse_categorical_crossentropy',
+  metrics=['accuracy']
+)
 
-model.fit(train, epochs=10, validation_data=(validation_input, validation_target), validation_steps=1, verbose=2)
+model.fit(
+  train,
+  epochs=100,
+  callbacks=[tf.keras.callbacks.EarlyStopping(patience=2)],
+  validation_data=(validation_input, validation_target),
+  validation_steps=1,
+  verbose=2
+)
 
 test_loss, test_accuracy = model.evaluate(test)
