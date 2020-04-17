@@ -1,4 +1,4 @@
-ID,book_length_min_avg,book_length_min_sum,price_avg,price_sum,review,review_10/10,completion,minutes_listened,support_request,last_visited_minus_purchase_date,targets
+ID,BookLengthMinAvg,BookLengthMinSum,PriceAvg,PriceSum,Review,Review10/10,Completion,MinutesListened,SupportRequest,LastVisitedMinusPurchaseDate,Targets
 873,2160,2160,10.13,10.13,0,8.91,0,0,0,0,1
 611,1404,2808,6.66,13.33,1,6.5,0,0,0,182,1
 705,324,324,10.13,10.13,1,9,0,0,1,334,1
