@@ -17,7 +17,7 @@ def create_and_print_kmeans(n):
   plt.ylim(-90, 90)
   plt.show()
 
-data = pd.read_csv('./datasets/countries.csv')
+data = pd.read_csv('../datasets/countries.csv')
 print('Original data is:', data)
 
 for i in range(6):

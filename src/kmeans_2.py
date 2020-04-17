@@ -18,13 +18,13 @@ def create_and_print_kmeans(n):
   plt.ylabel('Sepal Width')
   plt.show()
 
-data = pd.read_csv('./datasets/iris_flower_dataset.csv')
+data = pd.read_csv('../datasets/iris_flower_dataset.csv')
 print('Original data is:', data)
 
 for i in range(6):
   create_and_print_kmeans(i)
 
-targets = pd.read_csv('iris_flower_dataset_targets.csv')
+targets = pd.read_csv('../datasets/iris_flower_dataset_targets.csv')
 targets['species'] = targets['species'].map({'setosa':0,'versicolor':1,'virginica':2})
 
 plt.scatter(targets['sepal_length'],targets['sepal_width'],c=targets['species'],cmap='rainbow')
