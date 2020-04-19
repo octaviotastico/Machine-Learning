@@ -1,5 +1,4 @@
-from matplotlib import image
-from matplotlib import pyplot
+import matplotlib.image as mplimg
 import numpy as np
 from PIL import Image
 import tensorflow as tf
@@ -12,7 +11,7 @@ def preprocess():
 def predict():
   model = tf.keras.models.load_model('../../models/mnist/')
   for i in range(10):
-    img = image.imread(f'../../predict/mnist/{i}_.jpg')
+    img = mplimg.imread(f'../../predict/mnist/{i}_.jpg')
 
     resized = np.array(img)
     print(resized.shape)
