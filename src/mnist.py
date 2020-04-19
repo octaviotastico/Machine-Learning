@@ -47,7 +47,10 @@ model.compile(
 model.fit(
   train,
   epochs=100,
-  callbacks=[tf.keras.callbacks.EarlyStopping(patience=2)],
+  callbacks=[
+    tf.keras.callbacks.EarlyStopping(patience=2),
+    tf.keras.callbacks.ModelCheckpoint('../models/mnist', save_best_only=True, verbose=1)
+  ],
   validation_data=(validation_input, validation_target),
   validation_steps=1,
   verbose=2
