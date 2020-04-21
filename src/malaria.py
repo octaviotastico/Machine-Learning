@@ -3,7 +3,6 @@ import tensorflow_datasets as tfds
 
 physical_devices = tf.config.list_physical_devices('GPU')
 tf.config.experimental.set_memory_growth(physical_devices[0], True)
-tf.config.experimental.set_virtual_device_configuration(physical_devices[0], [tf.config.experimental.VirtualDeviceConfiguration(memory_limit=1024)])
 
 # train = tfds.load('malaria', as_supervised=True, split='train[:80%]')
 # validation = tfds.load('malaria', as_supervised=True, split='train[80%:90%]')
@@ -58,7 +57,7 @@ model.fit(
     tf.keras.callbacks.ModelCheckpoint('../models/malaria', save_best_only=True, monitor='loss', verbose=1)
   ],
   validation_data=(validation_input, validation_target),
-  validation_steps=1
+  validation_steps=size_validation
 )
 
 test_loss, test_accuracy = model.evaluate(testing)
