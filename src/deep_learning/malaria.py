@@ -54,7 +54,7 @@ model.fit(
   epochs=100,
   callbacks=[
     tf.keras.callbacks.EarlyStopping(patience=2, monitor='loss'),
-    tf.keras.callbacks.ModelCheckpoint('../models/malaria', save_best_only=True, monitor='loss', verbose=1)
+    tf.keras.callbacks.ModelCheckpoint('../../models/malaria', save_best_only=True, monitor='loss', verbose=1)
   ],
   validation_data=(validation_input, validation_target),
   validation_steps=size_validation

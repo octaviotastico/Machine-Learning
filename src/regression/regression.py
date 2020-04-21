@@ -6,12 +6,14 @@ import seaborn as sns
 import os
 sns.set()
 
+dataset_dir = '../../datasets/'
+
 # Function to print the logistic regression
 def log_reg_f(x, a, b):
   return np.array(np.exp(a*x+b) / (1+np.exp(a*x+b)))
 
 # Original data
-data = pd.read_csv('../datasets/bank_data.csv')
+data = pd.read_csv(f'{dataset_dir}/bank_data.csv')
 data = data.drop(['Unnamed: 0'], axis = 1)
 data['y'] = data['y'].map({'yes': 1, 'no': 0})
 

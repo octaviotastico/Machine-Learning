@@ -3,7 +3,8 @@ import pandas as pd
 from sklearn import preprocessing
 
 # Loading Data
-raw_data = pd.read_csv('../datasets/audiobooks_data.csv')
+dataset_dir = '../../datasets/'
+raw_data = pd.read_csv(f'{dataset_dir}/audiobooks_data.csv')
 
 # Separating
 training = raw_data[ raw_data.columns.difference(['ID', 'Targets']) ].to_numpy()
@@ -47,6 +48,6 @@ validation_targets = targets[training_samples:training_samples + validation_samp
 testing_inputs = training[training_samples+validation_samples:]
 testing_targets = targets[training_samples+validation_samples:]
 
-np.savez('../datasets/audiobooks_cleaned_train', inputs=training_inputs, targets=training_targets)
-np.savez('../datasets/audiobooks_cleaned_validation', inputs=validation_inputs, targets=validation_targets)
-np.savez('../datasets/audiobooks_cleaned_testing', inputs=testing_inputs, targets=testing_targets)
+np.savez(f'{dataset_dir}/audiobooks_cleaned_train', inputs=training_inputs, targets=training_targets)
+np.savez(f'{dataset_dir}/audiobooks_cleaned_validation', inputs=validation_inputs, targets=validation_targets)
+np.savez(f'{dataset_dir}/audiobooks_cleaned_testing', inputs=testing_inputs, targets=testing_targets)

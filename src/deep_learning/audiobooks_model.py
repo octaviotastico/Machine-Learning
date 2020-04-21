@@ -1,16 +1,18 @@
 import numpy as np
 import tensorflow as tf
 
+dataset_dir = '../../datasets/'
+
 # Loading Data
-npz = np.load('../datasets/audiobooks_cleaned_train.npz')
+npz = np.load(f'{dataset_dir}/audiobooks_cleaned_train.npz')
 training_inputs = npz['inputs'].astype(np.float)
 training_targets = npz['targets'].astype(np.int)
 
-npz = np.load('../datasets/audiobooks_cleaned_validation.npz')
+npz = np.load(f'{dataset_dir}/audiobooks_cleaned_validation.npz')
 validation_inputs = npz['inputs'].astype(np.float)
 validation_targets = npz['targets'].astype(np.int)
 
-npz = np.load('../datasets/audiobooks_cleaned_testing.npz')
+npz = np.load(f'{dataset_dir}/audiobooks_cleaned_testing.npz')
 testing_inputs = npz['inputs'].astype(np.float)
 testing_targets = npz['targets'].astype(np.int)
 
