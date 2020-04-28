@@ -1,10 +1,10 @@
 from sklearn.cluster import KMeans
 from mpl_toolkits.mplot3d import Axes3D
 import matplotlib.pyplot as plt
+import numpy as np
 import pandas as pd
 import seaborn as sns
 from sklearn import preprocessing
-import numpy as np
 sns.set()
 
 # size_neighbour_1 = np.random.normal(30, 10, 3000) + 10
@@ -31,33 +31,48 @@ dataset_dir = '../../datasets'
 
 dataset = pd.read_csv(f'{dataset_dir}/real_state_3d_2.csv')
 
-fig = plt.figure()
-ax = fig.add_subplot(111, projection='3d')
-ax.set_title('Original Scatterplot')
-ax.scatter(dataset['house_size'], dataset['km_to_Tokio'], dataset['house_price'])
-ax.set_xlabel('House Size')
-ax.set_ylabel('KM To Tokio')
-ax.set_zlabel('House Price')
-plt.show()
+def print_scatterplot(x,y,z,title,xlabel,ylabel,zlabel,colors=None):
+  fig = plt.figure()
+  ax = fig.add_subplot(111, projection='3d')
+  ax.scatter(x, y, z, c=colors, cmap='rainbow')
+  ax.set_xlabel(xlabel)
+  ax.set_ylabel(ylabel)
+  ax.set_zlabel(zlabel)
+  ax.set_title(title)
+  plt.show()
+
+print_scatterplot(
+  dataset['house_size'],
+  dataset['km_to_Tokio'],
+  dataset['house_price'],
+  'Data Scatterplot',
+  'House Size',
+  'KM To Tokio',
+  'House Price'
+)
 
 kmeans = KMeans(3)
 preprocess = preprocessing.scale(dataset.drop(['clusters'], axis=1))
 predicted_clusters = kmeans.fit_predict(preprocess)
 
-fig = plt.figure()
-ax = fig.add_subplot(111, projection='3d')
-ax.set_title('Predicted Scatterplot')
-ax.scatter(dataset['house_size'], dataset['km_to_Tokio'], dataset['house_price'], c=predicted_clusters, cmap='rainbow')
-ax.set_xlabel('House Size')
-ax.set_ylabel('KM To Tokio')
-ax.set_zlabel('House Price')
-plt.show()
+print_scatterplot(
+  dataset['house_size'],
+  dataset['km_to_Tokio'],
+  dataset['house_price'],
+  'Predicted Clusters Scatterplot',
+  'House Size',
+  'KM To Tokio',
+  'House Price',
+  predicted_clusters
+)
 
-fig = plt.figure()
-ax = fig.add_subplot(111, projection='3d')
-ax.set_title('Real Scatterplot')
-ax.scatter(dataset['house_size'], dataset['km_to_Tokio'], dataset['house_price'], c=dataset['clusters'], cmap='rainbow')
-ax.set_xlabel('House Size')
-ax.set_ylabel('KM To Tokio')
-ax.set_zlabel('House Price')
-plt.show()
+print_scatterplot(
+  dataset['house_size'],
+  dataset['km_to_Tokio'],
+  dataset['house_price'],
+  'Real Clusters Scatterplot',
+  'House Size',
+  'KM To Tokio',
+  'House Price',
+  dataset['clusters']
+)

@@ -1,10 +1,9 @@
+from mpl_toolkits.mplot3d import Axes3D
 import matplotlib.pyplot as plt
 import numpy as np
-import pandas as pd
 import seaborn as sns
 import tensorflow as tf
 from sklearn.cluster import KMeans
-from mpl_toolkits.mplot3d import Axes3D
 sns.set()
 
 # Random input data to train

@@ -1,9 +1,7 @@
+from mpl_toolkits.mplot3d import Axes3D
 import matplotlib.pyplot as plt
 import numpy as np
-import pandas as pd
 import seaborn as sns
-from sklearn.cluster import KMeans
-from mpl_toolkits.mplot3d import Axes3D
 sns.set()
 
 # Random input data to train
@@ -46,7 +44,7 @@ for _ in range (1000):
     outputs = np.dot(inputs, weights) + biases
     deltas = outputs - targets
     loss = np.sum(deltas ** 2) / 2 / observations # L2-Norm loss formula
-    if (abs(old_loss - loss) < 0.000000000001):
+    if (abs(old_loss - loss) < 1e-12):
         break
 
     old_loss = loss
